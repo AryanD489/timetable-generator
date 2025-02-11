@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Staff Individual Time Table Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Cabin:ital,wght@0,400..700;1,400..700&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cedarville+Cursive&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Elsie+Swash+Caps:wght@400;900&family=IM+Fell+English:ital@0;1&family=Londrina+Solid:wght@100;300;400;900&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ojuju:wght@200..800&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reenie+Beanie&family=Rubik+Dirt&family=Special+Elite&family=Staatliches&family=Syne:wght@400..800&family=Yatra+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="logo">
+          <img src="new-logo.png"  alt="Logo" />
+    </div>
+    <div class="container">
+        <h2>Staff Individual Time Table Generator</h2>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <h3>Teacher Details</h3>
+            <form id="mainForm">
+                <label>Teacher: <input type="text" id="teacher"></label><br>
+                <label>Academic Year: <input type="text" id="year"></label><br>
+                <label>Semester: <input type="text" id="semester"></label><br>
+                <label>Subject: <input type="text" id="subject"></label><br>
+                <label>Class: <input type="text" id="class"></label><br>
+                <label>No. of Subjects: 
+                <input type="number" min="1" id="subjectCount"  oninput="createSubjectInputs()">
+                </label>
+                <div id="subject-list"></div>
+            </form>
+        </div>
+
+        <!-- Timetable Generator -->
+        <div class="input-section">
+            <h3>Generate Timetable</h3>
+            <form id="timetableForm">
+                <label>
+                    Timetable Type:
+                    <select id="type">
+                        <option value="lecture">Lecture</option>
+                        <option value="practical">Practical</option>
+                    </select>
+                </label><br>
+
+                <label>
+                    Day:
+                    <select id="day">
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <!-- Add other days -->
+                    </select>
+                </label><br>
+
+                <label>
+                    Timing Range:
+                    <input type="time" id="startTime"> to
+                    <input type="time" id="endTime">
+                </label><br>
+
+                <button type="button" class="cta-button"  onclick="addEntry()">Add Entry</button>
+            </form>
+        </div>
+
+        <!-- Output Section -->
+        <div class="output-section">
+            <h3>Generated Timetable</h3>
+            <div class="timetable-type" id="lectureTimetable">
+                <h4>Lecture Timetable</h4>
+                <table id="lectureTable">
+                    <tr><th>Day</th><th>Timing</th><th>Class</th><th>Subject</th></tr>
+                </table>
+            </div>
+
+            <div class="timetable-type" id="practicalTimetable">
+                <h4>Practical Timetable</h4>
+                <table id="practicalTable">
+                    <tr><th>Day</th><th>Timing</th><th>Class</th><th>Subject</th></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle dynamic entries
+        let timetableData = JSON.parse(localStorage.getItem("timetableData")) || [];
+
+        function createSubjectInputs() {
+            const numSubjects = document.getElementById('subjectCount').value;
+            const subjectList = document.getElementById('subject-list');
+
+            // Subject Name Input
+            const subjectInput = document.createElement('input');
+            subjectInput.type = 'text';
+            subjectInput.placeholder = Subject ${ i + 1 };
+            subjectInput.className = "subject-input";
+
+  function addEntry() {
+    const type = document.getElementById("type").value;
+    const table = type === "lecture"
+      ? document.getElementById("lectureTable")
+      : document.getElementById("practicalTable");
+
+    const newRow = table.insertRow();
+    newRow.innerHTML = `
+      <td>${document.getElementById("day").value}</td>
+      <td>${document.getElementById("startTime").value} - ${document.getElementById("endTime").value}</td>
+      <td>${document.getElementById("class").value}</td>
+      <td>${document.getElementById("subject").value}</td>
+    `;
+  }
+    </script>
+</body>
+</html>
