@@ -1,5 +1,6 @@
-﻿:root {
+:root {
     --acct-color: #ce9191;
+    --bd-color: #202124;
 }
 
 body {
@@ -38,21 +39,39 @@ h2 {
 }
 
 h3 {
+    position:relative;
+    bottom:10px;
     font-size: 2em;
     margin: 15px 0 20px 0;
     font-weight: 500;
 }
+
+/*h3::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #ddd;
+    //background-color: #800000;
+    position: absolute;
+    top: 96%;
+    //z-index: -1;
+}*/
 
 .input-section, .output-section {
     background-color: #f5f5f5;
     border: 3px solid #800000;
     //border: 3px solid #ddd;
     border-radius: 20px;
-    padding: 20px;
+    padding: 25px;
     margin-bottom: 20px;
 }
 
-.cta-button {
+form{
+    font-size:18px;
+}
+
+.cta-button, .delete-all {
     font-family: 'poppins', sans-serif;
     padding: 10px 20px;
     margin: 20px 0 0 0;
@@ -63,7 +82,7 @@ h3 {
     font-size: 18px;
     font-weight: 500;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
 }
 
@@ -73,26 +92,66 @@ h3 {
         //background-color: hsl(205, 100%, 50%);
     }
 
+    
+
     .cta-button:active {
         background-color: #4CAF50;
         //background-color: hsl(211.06, 100%, 50%);
         //background-color: hsl(205, 100%, 40%);
+    }
+    
+    .delete-all:hover {
+        background-color: #45a049;
+    }
+
+    .delete-all:active {
+        background-color: #4CAF50;
     }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    display: table;
+    //border-collapse: separate;
+    box-sizing: border-box;
+    border-spacing: 2px;
+    border-color: black;
+}
+
+tr {
+    display: table-row;
+    background-color: #f4d7c8;
+    //vertical-align: inherit;
+    //unicode-bidi: isolate;
+    //border-color: inherit;
 }
 
 th, td {
-    border: 1px solid #ddd;
+    border: 2px solid #800000;
     padding: 8px;
     text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
+    //background-color: #d7a100;
+    background-color: #FFC107;
+    //background-color: #f2f2f2;
+}
+
+
+h4 {
+    font-size: 1.2rem;
+    position: relative;
+    bottom: 12px;
+    font-weight: 600;
+    /*display: block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;*/
 }
 
 input, select {
@@ -156,5 +215,10 @@ select {
 .timetable-type {
     margin: 20px 0;
     padding: 10px;
-    background-color: #f8f9fa;
+    border-radius: 15px;
+    background-color: #E8E8E8;
+    //background-color: #efefef;
+    border-color: black;
+    //border: 2px solid #ddd;
+    //background-color: #f8f9fa;
 }
