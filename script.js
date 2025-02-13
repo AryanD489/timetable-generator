@@ -39,6 +39,7 @@ function addEntry() {
         <td>${startTime} - ${endTime}</td>
         <td>${classValue}</td>
         <td>${subject}</td>
+        <td><button onclick="deleteRow(this)">Delete</button></td>
     `;
 
         const newEntry = { type, day, startTime, endTime, class: classValue, subject };
@@ -47,4 +48,22 @@ function addEntry() {
         localStorage.setItem("timetableData", JSON.stringify(timetableData));
     });
 
+
+}
+
+// Function to delete a specific row
+function deleteRow(button) {
+    const row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
+
+// Function to clear the entire timetable
+function clearTimetable() {
+    document.getElementById("lectureTable").innerHTML = `
+        <tr><th>Day</th><th>Timing</th><th>Class</th><th>Subject</th><th>Action</th></tr>
+    `;
+    document.getElementById("practicalTable").innerHTML = `
+        <tr><th>Day</th><th>Timing</th><th>Class</th><th>Subject</th><th>Action</th></tr>
+    `;
+    localStorage.removeItem("timetableData"); // Clear localStorage as well
 }
